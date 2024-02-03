@@ -8,7 +8,13 @@ import re
 
 class Person:
     def __init__(self, gender, number):
-        
+        self.gender = gender # gender = M or W
+        self.number = number # number > 0
+
+    def initialize_preferences(self, preferences):
+        self.preferences = preferences
+
+
 
 
 # Returns a number found in the filename
@@ -51,8 +57,12 @@ def main():
             numberOfWomen = int(numbers[1])
         
         for i in range(numberOfMen):
+            #initilize men
 
         for i in range(numberOfWomen):
+            #initialize women
+
+        #continue execution
 
 
 
