@@ -113,8 +113,18 @@ def main():
     #    print(man.toString())
     #for woman in womenArr:
     #    print(woman.toString())
-
     
+
+    #implement Gale-Shapely Algorithm:
+    
+    #have m* make proposal to m*.preferences[0] (w*)
+    #have w* evaluate the proposal, if w* isn't matched yet, accept
+    #if w* is matched:
+        #Evaluate:
+        #if w* prefers her current partner (m') over m*, reject
+            #->m* proposes to next on list after rejection and so on
+        #if w* prefers m* over m', leave current partner and accept m*
+            #->m' must propose to his next choice on his list
         
 
 if __name__ == "__main__":
