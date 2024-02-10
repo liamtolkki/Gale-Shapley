@@ -15,6 +15,15 @@ class Person:
         self.preferences = preferences
 
 
+def findPerson(menArr, womenArr, gender, number):
+    
+    if gender == 'M':
+                #search the menArray:
+        whatPerson = menArr[number - 1]
+    else: #gender == 'W'
+        whatPerson = womenArr[number - 1]
+    return whatPerson
+                            
 
 
 # Returns a number found in the filename
@@ -58,15 +67,37 @@ def main():
         if len(numbers) == 2: # should always be 2!
             numberOfMen = int(numbers[0])
             numberOfWomen = int(numbers[1])
-        
+
+        #once we know how many men and women, we can create their objects:
         for i in range(numberOfMen):
             #initilize men
-            
-
+            menArr.append(Person('M', i + 1)) #i+1 because the numbering for the people starts at 1
         for i in range(numberOfWomen):
             #initialize women
-
+            womenArr.append(Person('F', i + 1))
         #continue execution
+        #initialize preferences:
+        line = file.readline() #this will hold the first line of actual preference data
+        while line:
+            #keep reading lines until done with file
+            lineComponents = line.split()
+            tempPeopleArr = []
+            for i in range(len(lineComponents)):
+
+                digits = re.findall(r'\d+', lineComponents[i])
+                currGender = lineComponents[i][0].upper()
+                number = int("".join(digits))
+                whatPerson = findPerson(menArr, womenArr, currGender, number)
+                tempPeopleArr.append(whatPerson)
+            #now, take tempPeopleArr[0] (TPA[0]) and add preferences as:
+            # tempPeopleArr[0].preferences = TPA[1], TPA[2], ..., TPA[n]
+            targetPerson = tempPeopleArr[0]
+            preferences = tempPeopleArr[1:] #subset of the previous array
+            targetPerson.initialize_preferences(preferences)
+
+            line = file.readline() #read next line and repeat...
+
+        
 
 
 
