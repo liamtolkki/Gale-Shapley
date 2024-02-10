@@ -30,6 +30,9 @@ def main():
     # default values, forward declaration
     numberOfMen = 0
     numberOfWomen = 0
+    #declare 2 arrays: 1 for men, 1 for women
+    menArr = []
+    womenArr = []
     # process file name:
     if len(sys.argv) != 2:
         print("make sure to include the file name of the input file!\n")
@@ -58,6 +61,7 @@ def main():
         
         for i in range(numberOfMen):
             #initilize men
+            
 
         for i in range(numberOfWomen):
             #initialize women
