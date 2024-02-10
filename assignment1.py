@@ -8,19 +8,28 @@ import re
 
 class Person:
     def __init__(self, gender, number):
-        self.gender = gender # gender = M or W
+        self.gender = gender # gender = m or w
         self.number = number # number > 0
 
     def initialize_preferences(self, preferences):
         self.preferences = preferences
+    
+
+    #this is just for testing purposes...
+    def toString(self):
+        string = ""
+        string += self.gender + str(self.number) + ": "
+        for person in self.preferences:
+            string += person.gender + str(person.number) + " "
+        return string
 
 
 def findPerson(menArr, womenArr, gender, number):
     
-    if gender == 'M':
+    if gender == 'm':
                 #search the menArray:
         whatPerson = menArr[number - 1]
-    else: #gender == 'W'
+    else: #gender == 'w'
         whatPerson = womenArr[number - 1]
     return whatPerson
                             
@@ -71,10 +80,10 @@ def main():
         #once we know how many men and women, we can create their objects:
         for i in range(numberOfMen):
             #initilize men
-            menArr.append(Person('M', i + 1)) #i+1 because the numbering for the people starts at 1
+            menArr.append(Person('m', i + 1)) #i+1 because the numbering for the people starts at 1
         for i in range(numberOfWomen):
             #initialize women
-            womenArr.append(Person('F', i + 1))
+            womenArr.append(Person('w', i + 1))
         #continue execution
         #initialize preferences:
         line = file.readline() #this will hold the first line of actual preference data
@@ -85,7 +94,7 @@ def main():
             for i in range(len(lineComponents)):
 
                 digits = re.findall(r'\d+', lineComponents[i])
-                currGender = lineComponents[i][0].upper()
+                currGender = lineComponents[i][0].lower()
                 number = int("".join(digits))
                 whatPerson = findPerson(menArr, womenArr, currGender, number)
                 tempPeopleArr.append(whatPerson)
@@ -96,7 +105,12 @@ def main():
             targetPerson.initialize_preferences(preferences)
 
             line = file.readline() #read next line and repeat...
+    for man in menArr:
+        print(man.toString())
+    for woman in womenArr:
+        print(woman.toString())
 
+    
         
 
 
