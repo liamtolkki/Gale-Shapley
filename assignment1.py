@@ -2,6 +2,7 @@
 # CS 7200
 # Assignment 1 (Modified Gale-Shapley algorithm)
 # Submission 1 submitted: 02/02/2024
+# Submission 2 sumitted: 02/10/2024
 # Final Draft due: 02/17/2024
 
 import sys
