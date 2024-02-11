@@ -1,5 +1,4 @@
-I am very sorry that what I have submitted here is quite minimal.
-I didn't realize until today that we had to submit checkpoints to pilot
-before the due-date. I will be more dilligent in making sure to
-work on this assignment evenly throughout the course of the time
-before the due date!
+I have implemented the algorithm in completion. However, i just 
+need to do some robust testing to verify if it is correct.
+currently, i have it set to replace the string for a partner
+with "--" if a person doesn't get a partner in the output file
