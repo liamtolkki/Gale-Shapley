@@ -12,6 +12,7 @@ class Person:
     def __init__(self, gender, number):
         self.gender = gender # gender = m or w
         self.number = number # number > 0
+        self.partner = None # during initiation, they wont have a partner
 
     def initialize_preferences(self, preferences):
         self.preferences = preferences
@@ -25,6 +26,11 @@ class Person:
             string += person.gender + str(person.number) + " "
         return string
 
+#searches the list of person's preferences
+#and returns a weighted number representing person's preference for the other person
+def getPriority(person, other):
+    return len(person.preferences) - 1 - person.preferences.index(other)
+
 
 def findPerson(menArr, womenArr, gender, number):
     
@@ -34,6 +40,38 @@ def findPerson(menArr, womenArr, gender, number):
     else: #gender == 'w'
         whatPerson = womenArr[number - 1]
     return whatPerson
+#returns true or false: true if the woman accepts the proposal,
+#false if she rejects it
+
+def propose(man, woman):
+    #man proposes to woman
+    if woman.partner == None:
+        #accept
+        woman.partner = man
+        man.partner = woman
+        return True #paired!    
+    if getPriority(woman, man) > getPriority(woman, woman.partner):
+        #accept and break up with current partner:
+        oldMan = woman.partner
+        oldMan.partner = None
+        man.partner = woman
+        woman.partner = man
+        #make him find new partner before proceeding
+        for woman_ in oldMan.preferences:
+            result = propose(oldMan, woman_)
+            if result == True:
+                break #dont keep proposing if found a partner
+
+            #this is recursive, but necessary to maintain optimal space complexity
+            #it is possible that this man will not find a partner
+        return True #because man paired with woman
+
+    else: #woman prefers her current partner (Reject):
+        return False
+
+
+
+
                             
 
 
@@ -126,6 +164,32 @@ def main():
             #->m* proposes to next on list after rejection and so on
         #if w* prefers m* over m', leave current partner and accept m*
             #->m' must propose to his next choice on his list
+    
+    for man in menArr:
+        #man proposes through his preferences:
+        for woman in man.preferences:
+            result = propose(man, woman)
+            if result == True:
+                break #stop proposing if found best available partner
+    
+    #output to file:
+    with open(outputFileName, 'w') as file:
+        file.write(str(numberOfMen) + " " + str(numberOfWomen) + "\n")
+        for man in menArr:
+            partnerStr = ""
+            if man.partner == None:
+                partnerStr = "--"
+            else:
+                partnerStr = man.partner.gender + str(man.partner.number)
+            file.write(man.gender + str(man.number) + " " + partnerStr + "\n")
+        for woman in womenArr:
+            if woman.partner == None:
+                #only write this line to file if woman doesn't have a partner
+                file.write("-- " + woman.gender + str(woman.number) + "\n") 
+            else:
+                continue
+
+
         
 
 if __name__ == "__main__":
