@@ -174,7 +174,7 @@ def main():
     
     #output to file:
     with open(outputFileName, 'w') as file:
-        file.write(str(numberOfMen) + " " + str(numberOfWomen) + "\n")
+        #file.write(str(numberOfMen) + " " + str(numberOfWomen) + "\n") #-- Do not need this!
         for man in menArr:
             partnerStr = ""
             if man.partner == None:
