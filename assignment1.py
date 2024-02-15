@@ -173,7 +173,8 @@ def main():
                 break #stop proposing if found best available partner
     
     #output to file:
-    with open(outputFileName, 'w') as file:
+    outPath = "testing/" + outputFileName
+    with open(outPath, 'w') as file:
         #file.write(str(numberOfMen) + " " + str(numberOfWomen) + "\n") #-- Do not need this!
         for man in menArr:
             partnerStr = ""
