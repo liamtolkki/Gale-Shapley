@@ -13,11 +13,11 @@ class Person:
 
 
 def main():
+    menArr = []
+    womenArr = []    
     menCount = int(input("How many men? "))
     womenCount = int(input("How many women? "))
     fileNm = str(input("Name of file? (Ex: \"input3.txt\") "))
-    menArr = []
-    womenArr = []
 
     #Initialize the arrays of men and women:
     for i in range(menCount):
@@ -37,7 +37,8 @@ def main():
         #shuffle the array of women and make it the preference list
         random.shuffle(menArr)
         woman.preferences = menArr[:]
-    with open(fileNm, "w") as file:
+    path = "testing/" + fileNm
+    with open(path, "w") as file:
         file.write(str(menCount) + " " + str(womenCount) + "\n") #write the men/women numbers
         for man in menArrCpy:
             file.write(man.gender + str(man.number) + " ") #print man, then preferences
@@ -56,6 +57,4 @@ def main():
     
 
 
-    
-if __name__ == "__main__":
-    main()
+main()
