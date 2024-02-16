@@ -179,17 +179,10 @@ def main():
         for man in menArr:
             partnerStr = ""
             if man.partner == None:
-                partnerStr = "--"
+                continue #dont print...
             else:
                 partnerStr = man.partner.gender + str(man.partner.number)
             file.write(man.gender + str(man.number) + " " + partnerStr + "\n")
-        for woman in womenArr:
-            if woman.partner == None:
-                #only write this line to file if woman doesn't have a partner
-                file.write("-- " + woman.gender + str(woman.number) + "\n") 
-            else:
-                continue
-
 
         
 
