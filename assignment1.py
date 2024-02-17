@@ -52,7 +52,7 @@ def propose(man, woman):
         return True #paired!    
     if getPriority(woman, man) > getPriority(woman, woman.partner):
         #accept and break up with current partner:
-        oldMan = woman.partner
+        oldMan = woman.partner #old man is her old partner
         oldMan.partner = None
         man.partner = woman
         woman.partner = man
