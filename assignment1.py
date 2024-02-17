@@ -80,7 +80,7 @@ def getNumber(filename):
     digits = re.findall(r'\d+', filename) # Regex to find the digits in the name
     if not digits:
         return 0
-    number = int(''.join(digits))
+    number = int(''.join(digits)) #concatenate the digits together and cast to int
     return number
 
 
